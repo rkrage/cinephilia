@@ -8,6 +8,8 @@ gem 'rails', '3.2.1'
 gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
+gem 'imdb'
+gem 'hpricot'
 
 
 
