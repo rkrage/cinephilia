@@ -11,8 +11,6 @@ gem 'therubyracer'
 gem 'imdb'
 gem 'hpricot'
 
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,6 +22,15 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+group :development do
+gem 'rspec-rails', '~> 2.6'
+end
+group :test do
+gem 'rspec', '~>2.6'
+gem 'webrat'
+end
+
 
 gem 'jquery-rails'
 
