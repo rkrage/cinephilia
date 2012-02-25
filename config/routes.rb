@@ -1,4 +1,6 @@
 Cinephilia::Application.routes.draw do
+  resources :users
+
   get "users/new"
 
   match '/contact', :to => 'pages#contact'
