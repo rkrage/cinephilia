@@ -8,6 +8,8 @@ gem 'rails', '3.2.1'
 gem 'heroku'
 gem 'imdb'
 gem 'hpricot'
+gem 'gravatar_image_tag'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +28,7 @@ end
 group :test do
   gem 'rspec', '~>2.6'
   gem 'webrat'
+  gem 'factory_girl_rails'
 end
 
 group :production do
