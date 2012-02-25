@@ -1,6 +1,6 @@
 Cinephilia::Application.configure do
 # Settings specified here will take precedence over those in config/application.rb
-  config.assets.precompile += %w( *.css *.js )
+  config.assets.precompile += %w( blueprint/screen.css blueprint/print.css )
 
 # Code is not reloaded between requests
   config.cache_classes = true
