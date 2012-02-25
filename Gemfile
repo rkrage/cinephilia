@@ -6,8 +6,6 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'heroku'
-gem 'execjs'
-gem 'therubyracer'
 gem 'imdb'
 gem 'hpricot'
 
@@ -22,6 +20,8 @@ end
 group :development do
   gem 'rspec-rails', '~> 2.6'
   gem 'sqlite3'
+  gem 'therubyracer'
+  gem 'execjs'
 end
 group :test do
   gem 'rspec', '~>2.6'
