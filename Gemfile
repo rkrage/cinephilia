@@ -23,19 +23,18 @@ group :assets do
 end
 
 group :development do
-gem 'rspec-rails', '~> 2.6'
-gem 'sqlite3'
+  gem 'rspec-rails', '~> 2.6'
+  gem 'sqlite3'
 end
 group :test do
-gem 'rspec', '~>2.6'
-gem 'webrat'
+  gem 'rspec', '~>2.6'
+  gem 'webrat'
 end
 
 group :production do
   gem 'pg'
   gem 'thin'
 end
-
 
 gem 'jquery-rails'
 
