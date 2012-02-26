@@ -1,6 +1,6 @@
 <table class="profile" summary="Profile information">
 	<tr>
-		<td class="main"><h1> <%= gravatar_for @user %>
+		<td class="main"><h1> <img src="<%= gravatar_for @user %>">
 		<%= @user.name %> </h1></td>
 		<td class="sidebar round"><strong>Name</strong> <%= @user.name %>
 		<br />
