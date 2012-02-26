@@ -9,6 +9,7 @@ gem 'heroku'
 gem 'imdb'
 gem 'hpricot'
 gem 'gravatar_image_tag'
+gem 'ssl_requirement'
 
 
 # Gems used only for assets and not required
