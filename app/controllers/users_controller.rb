@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   def new
+    if signed_in?
+      render 'home'
+    else
     @user = User.new
     @title = "Sign up"
+    end
   end
 
   def show
