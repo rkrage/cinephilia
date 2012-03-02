@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
     if signed_in?
-      render 'home'
+      redirect_to root_path
     else
     @user = User.new
     @title = "Sign up"
