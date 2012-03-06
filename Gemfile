@@ -7,6 +7,7 @@ gem 'rails', '3.2.1'
 
 gem 'heroku'
 gem 'imdb'
+gem 'will_paginate'
 gem 'hpricot'
 gem 'gravatar_image_tag'
 

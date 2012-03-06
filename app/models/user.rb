@@ -5,14 +5,16 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  name_regex = /^[a-z0-9\-_]+$/i
 
-  validates :name, :presence => true, :length=> { :maximum => 50 }
+  validates :name, :presence => true, :length=> { :maximum => 50 }, :format => {:with => name_regex}, :uniqueness => {:case_sensitive => false}
 
   validates :email, :presence => true, :format => {:with => email_regex}, :uniqueness => {:case_sensitive => false}
 
   validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
 
   before_save :encrypt_password
+  before_save :capitalize_name
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end
@@ -29,6 +31,10 @@ class User < ActiveRecord::Base
   end
 
   private
+  
+  def capitalize_name
+    self.name.capitalize!
+  end
 
   def encrypt_password
     self.salt = make_salt if new_record?

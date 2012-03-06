@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     else
       sign_in user
       flash[:success] = "Welcome back " + user.name + "!"
-      redirect_to user
+      redirect_back_or user
     end
   end
 
