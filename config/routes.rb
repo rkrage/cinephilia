@@ -1,4 +1,5 @@
 Cinephilia::Application.routes.draw do
+
   get "sessions/new"
 
   resources :users
@@ -6,6 +7,8 @@ Cinephilia::Application.routes.draw do
 
   get "users/new"
 
+  match 'search',  :to => 'movies#search'
+  match 'results', :to => 'movies#results'
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
