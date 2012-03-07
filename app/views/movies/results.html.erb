@@ -6,7 +6,7 @@
 <ul>
 <% (0..@length).each do |i| %>
 	<li>
-		<%= @movies[i].title %>
+		<%= link_to @movies[i].title, @movies[i].url, {:target => "_blank"} %>
 	</li>
 	<% end %>
 </ul>
