@@ -1,8 +1,4 @@
-class MoviesController < ApplicationController
-  def search
-    @title = "Search"
-  end
-  
+class MoviesController < ApplicationController  
   def results
     @title = "Results"
     @query = params[:q]
