@@ -9,6 +9,9 @@
 					<h3>My Cinephilia</h3>
 					<ul class="sidemenu">
 						<li>
+							<%= link_to "Profile", current_user %>
+						</li>
+						<li>
 							<a href="#">Friends</a>
 						</li>
 						<li>
@@ -19,6 +22,9 @@
 						</li>
 						<li>
 							<a href="#">Suggestions</a>
+						</li>
+						<li>
+							<%= link_to "Settings", edit_user_path(current_user) %>
 						</li>
 					</ul>
 					<h3>Links</h3>
