@@ -7,6 +7,7 @@
 					</p>
 					<%end%>
 					<h3>My Cinephilia</h3>
+					<% if signed_in? %>
 					<ul class="sidemenu">
 						<li>
 							<%= link_to "Profile", current_user %>
@@ -27,6 +28,9 @@
 							<%= link_to "Settings", edit_user_path(current_user) %>
 						</li>
 					</ul>
+					<% else %>
+						<p><%= link_to "Sign in", signin_path %> to access My Cinephilia</p>
+					<%end%>
 					<h3>Links</h3>
 					<ul class="sidemenu">
 						<li>
