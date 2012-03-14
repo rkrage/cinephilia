@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :index]
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:edit, :update, :index, :destroy]
+  before_filter :correct_user, :only => [:edit, :update, :destroy]
   def new
     if signed_in?
       redirect_to root_path
@@ -45,6 +45,11 @@ class UsersController < ApplicationController
       @title = "Edit user"
       render 'edit'
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to root_path
   end
   private
 

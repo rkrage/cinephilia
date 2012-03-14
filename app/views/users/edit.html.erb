@@ -23,5 +23,9 @@
 </div>
 <% end %>
 <p>
-	<img src="<%= gravatar_for @user %>" width="30"> <a href="http://gravatar.com/emails">change</a>
+	<img src="<%= gravatar_for @user %>" width="30"><a href="http://gravatar.com/emails">change</a>
+</p>
+<p>
+	<%= link_to "Delete account", @user, :method => :delete, :confirm => "Are you sure you want to delete your account?",
+	:title => "This will delete your account and remove all data." %>
 </p>
