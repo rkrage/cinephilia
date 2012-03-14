@@ -10,10 +10,7 @@
 	<% @movie = @movies[i] %>
 	<li>
 		<%= link_to @movie.title, @movie.url, {:target => "_blank"} %>
-		<div class="toggle">
-			<p><%= @movie.plot %></p>
-		</div>
 	</li>
-	<% end %>
+<% end %>
 </ul>
 <% end%>
