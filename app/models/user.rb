@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   private
   
   def capitalize_name
-    self.name.capitalize!
+    self.name.downcase!
   end
 
   def encrypt_password
