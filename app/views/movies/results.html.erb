@@ -7,8 +7,12 @@
 <p>Showing results for, '<%= @query%>'.</p>
 <ul>
 <% (0..@length).each do |i| %>
+	<% @movie = @movies[i] %>
 	<li>
-		<%= link_to @movies[i].title, @movies[i].url, {:target => "_blank"} %>
+		<%= link_to @movie.title, @movie.url, {:target => "_blank"} %>
+		<div class="toggle">
+			<p><%= @movie.plot %></p>
+		</div>
 	</li>
 	<% end %>
 </ul>
