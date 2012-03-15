@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225213534) do
+ActiveRecord::Schema.define(:version => 20120315052314) do
+
+  create_table "movies", :force => true do |t|
+    t.string   "imdbid"
+    t.string   "title"
+    t.string   "genre1"
+    t.string   "genre2"
+    t.string   "rating"
+    t.integer  "year"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
