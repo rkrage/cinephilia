@@ -6,6 +6,7 @@ Cinephilia::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   get "users/new"
+  post "movies/like"
 
   match 'results', :to => 'movies#results'
   match '/signup', :to => 'users#new'

@@ -1,3 +1,10 @@
+<script type="text/javascript">
+function submitform(id)
+{
+  document.forms[id].submit();
+}
+</script>
+
 <h1>Results</h1>
 <% if @query.empty? %>
 <p>You did not enter any text. Try again.</p>
@@ -9,7 +16,11 @@
 <% (0..@length).each do |i| %>
 	<% @movie = @movies[i] %>
 	<li>
-		<%= link_to @movie.title, @movie.url, {:target => "_blank"} %>
+		<%= link_to @movie.title, @movie.url, {:target => "_blank"} %><% if signed_in? %> - <a href="javascript:submitform('<%= i+1%>')">Like</a>
+			<form action="movies/like" method="post" id="<%= i+1 %>" style="display:none">
+				<input type="hidden" name="id" value="<%= @movie.id %>">
+			</form>
+		<%end%>
 	</li>
 <% end %>
 </ul>

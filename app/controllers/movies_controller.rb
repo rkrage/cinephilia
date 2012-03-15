@@ -8,4 +8,14 @@ class MoviesController < ApplicationController
       @length = 9
     end
   end
+
+  def like
+    if signed_in?
+      flash[:success] = "We acknowledge the fact that you are trying to like the movie with id: " + params[:id]
+      @movie = Imdb::Movie.new(params[:id])
+      redirect_to current_user
+    else
+      redirect_to signin_path
+    end
+  end
 end
