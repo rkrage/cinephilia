@@ -1,0 +1,15 @@
+<h1><%= @title%></h1>
+<table>
+	<tr>
+		<td><a href="<%= @movie.poster %>"><img src="<%= @movie.poster%>" width="100px"></a></td><td>
+		<p>
+			Year: <%= @movie.year%>
+			<br/>
+			Rating: <%= @movie.rating%>
+			<br/>
+			Genres: <%= @movie.genre1%>, <%= @movie.genre2%>
+			<br/>
+			Plot: <%= @movie.plot%>
+		</p></td>
+	</tr>
+</table>

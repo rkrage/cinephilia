@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315052314) do
+ActiveRecord::Schema.define(:version => 20120323183749) do
 
   create_table "movies", :force => true do |t|
     t.string   "imdbid"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20120315052314) do
     t.integer  "year"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "url"
+    t.string   "poster"
+    t.string   "plot"
   end
 
   create_table "users", :force => true do |t|

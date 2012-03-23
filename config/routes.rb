@@ -3,6 +3,7 @@ Cinephilia::Application.routes.draw do
   get "sessions/new"
 
   resources :users
+  resources :movies
   resources :sessions, :only => [:new, :create, :destroy]
 
   get "users/new"
