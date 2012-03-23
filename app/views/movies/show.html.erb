@@ -20,9 +20,11 @@ function submitform(id)
 		</p></td>
 	</tr>
 </table>
+<%if signed_in? %>
 <form action="/movies/like" method="post" id="1" style="display:none">
 	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
 </form>
 <p align="center">
 	<input type="button" class="button" value="Like this movie!" onclick="javascript:submitform('1')">
 </p>
+<%end%>
