@@ -16,11 +16,12 @@ function submitform(id)
 <% (0..@length).each do |i| %>
 	<% @movie = @movies[i] %>
 	<li>
-		<%= link_to @movie.title, "/movies/"+@movie.id%><% if signed_in? %> - <a href="javascript:submitform('<%= i+1%>')">Like</a>
+		<%= link_to @movie.title, "/movies/"+@movie.id%><!--<% if signed_in? %> - <a href="javascript:submitform('<%= i+1%>')">Like</a>
 			<form action="/movies/like" method="post" id="<%= i+1 %>" style="display:none">
 				<input type="hidden" name="id" value="<%= @movie.id %>">
 			</form>
 		<%end%>
+		-->
 	</li>
 <% end %>
 </ul>
