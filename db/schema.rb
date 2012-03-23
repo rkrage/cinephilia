@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323183749) do
+ActiveRecord::Schema.define(:version => 20120323203747) do
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "movie_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "likes", ["movie_id"], :name => "index_likes_on_imdbid"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "movies", :force => true do |t|
     t.string   "imdbid"

@@ -24,9 +24,14 @@ class MoviesController < ApplicationController
 
   def like
     if signed_in?
-      flash[:success] = "We acknowledge the fact that you are trying to like the movie with id: " + params[:id]
-      Movie.create(:imdbid => params[:id])
-      redirect_to current_user
+      imdbid = params[:id]
+      Movie.create(:imdbid => imdbid)
+      if current_user.like(Movie.find_by_imdbid(imdbid).id).invalid?
+        flash[:success] = "You have already liked this movie!"
+      else
+        flash[:success] = "You have successfully liked this movie."
+      end
+      redirect_to '/movies/' + imdbid
     else
       redirect_to signin_path
     end

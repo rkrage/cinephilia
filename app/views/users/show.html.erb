@@ -1,9 +1,20 @@
 <table class="profile" summary="Profile information">
 	<tr>
-		<td class="main"><h1> <img src="<%= gravatar_for @user %>">
-		<%= @user.name %> </h1></td>
+		<td class="main"><h1><img src="<%= gravatar_for @user %>"> <%= @user.name %> </h1></td>
 		<td class="sidebar round"><strong>Name</strong> <%= @user.name %>
 		<br />
-		<strong>URL</strong> <%= link_to user_path(@user), @user %> </td>
+		<strong>URL</strong> <%= link_to user_path(@user), @user %>
+		<br/>
+		<br/>
+		<strong>My Movies</strong>
+		<br/>
+		<%= will_paginate %>
+		<ol>
+			<% @users.each do |movie| %>
+			<li>
+				<a href="/movies/<%= movie.imdbid%>"><%= movie.title%></a>
+			</li>
+			<% end %>
+		</ol> <%= will_paginate %> </td>
 	</tr>
 </table>

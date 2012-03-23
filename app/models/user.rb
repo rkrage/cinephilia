@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :likes
+  has_many :movies, :through => :likes
 
   attr_accessor :password
 
@@ -30,8 +32,12 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
 
+  def like(movie_id)
+    likes.create(:movie_id => movie_id)
+  end
+
   private
-  
+
   def capitalize_name
     self.name.downcase!
   end

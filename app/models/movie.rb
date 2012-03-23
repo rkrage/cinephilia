@@ -1,4 +1,7 @@
 class Movie < ActiveRecord::Base
+  has_many :likes
+  has_many :users, :through => :likes
+  
   attr_accessible :imdbid
 
   validates :imdbid, :presence => true, :uniqueness => {:case_sensitive => false}
