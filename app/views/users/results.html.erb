@@ -1,0 +1,15 @@
+<h1>User Results</h1>
+<% if @query.empty? %>
+<p>You did not enter any text. Try again.</p>
+<% elsif @length < 0 %>
+<p>Sorry, we could not find any results for, '<%= @query%>'.</p>
+<% else %>
+<p>Showing results for, '<%= @query%>'.</p>
+<ol>
+<% (0..@length).each do |i| %>
+	<li>
+		<img src="<%= gravatar_for @users[i] %>" width="30"> <%= link_to @users[i].name, @users[i]%>
+	</li>
+<% end %>
+</ol>
+<% end%>

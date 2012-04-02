@@ -1,51 +1,58 @@
-				<div id="sidebar">
-					<h3>Find a movie</h3>
-					<%= form_tag("/results", :method => "get", :class => "searchform") do%>
-					<p>
-						<%= text_field_tag 'q',nil,:class => "textbox" %>
-						<%= submit_tag("Search", :class => "button") %>
-					</p>
-					<%end%>
-					<h3>My Cinephilia</h3>
-					<% if signed_in? %>
-					<ul class="sidemenu">
-						<li>
-							<%= link_to "Profile", current_user %>
-						</li>
-						<li>
-							<a href="#">Friends</a>
-						</li>
-						<li>
-							<a href="#">Movies</a>
-						</li>
-						<li>
-							<a href="#">Reviews</a>
-						</li>
-						<li>
-							<a href="#">Suggestions</a>
-						</li>
-						<li>
-							<%= link_to "Settings", edit_user_path(current_user) %>
-						</li>
-					</ul>
-					<% else %>
-						<p><%= link_to "Sign in", signin_path %> to access My Cinephilia</p>
-					<%end%>
-					<h3>Links</h3>
-					<ul class="sidemenu">
-						<li>
-							<a href="http://www.imdb.com" target="_blank">IMDB</a>
-						</li>
-						<li>
-							<a href="http://www.rottentomatoes.com/" target="_blank">Rotten Tomatoes</a>
-						</li>
-						<li>
-							<a href="http://www.netflix.com" target="_blank">Netflix</a>
-						</li>
-						<li>
-							<a href="http://www.flixster.com/" target="_blank">Flixster</a>
-						</li>
-					</ul>
-					<br />
-					<br />
-				</div>
+<div id="sidebar">
+	<h3>Find a movie</h3>
+	<%= form_tag("/movieresults", :method => "get", :class => "searchform") do%>
+	<p>
+		<%= text_field_tag 'q',nil,:class => "textbox" %>
+		<%= submit_tag("Search", :class => "button") %>
+	</p>
+	<%end%>
+	<h3>Find a user</h3>
+	<%= form_tag("/userresults", :method => "get", :class => "searchform") do%>
+	<p>
+		<%= text_field_tag 'q',nil,:class => "textbox" %>
+		<%= submit_tag("Search", :class => "button") %>
+	</p>
+	<%end%> <h3>My Cinephilia</h3>
+	<% if signed_in? %>
+	<ul class="sidemenu">
+		<li>
+			<%= link_to "Profile", current_user %>
+		</li>
+		<li>
+			<a href="#">Friends</a>
+		</li>
+		<li>
+			<a href="#">Movies</a>
+		</li>
+		<li>
+			<a href="#">Reviews</a>
+		</li>
+		<li>
+			<a href="#">Suggestions</a>
+		</li>
+		<li>
+			<%= link_to "Settings", edit_user_path(current_user) %>
+		</li>
+	</ul>
+	<% else %>
+	<p>
+		<%= link_to "Sign in", signin_path %> to access My Cinephilia
+	</p>
+	<%end%> <h3>Links</h3>
+	<ul class="sidemenu">
+		<li>
+			<a href="http://www.imdb.com" target="_blank">IMDB</a>
+		</li>
+		<li>
+			<a href="http://www.rottentomatoes.com/" target="_blank">Rotten Tomatoes</a>
+		</li>
+		<li>
+			<a href="http://www.netflix.com" target="_blank">Netflix</a>
+		</li>
+		<li>
+			<a href="http://www.flixster.com/" target="_blank">Flixster</a>
+		</li>
+	</ul>
+	<br />
+	<br />
+</div>

@@ -9,7 +9,8 @@ Cinephilia::Application.routes.draw do
   get "users/new"
   post "movies/like"
 
-  match 'results', :to => 'movies#results'
+  match 'movieresults', :to => 'movies#results'
+  match 'userresults', :to => 'users#results'
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'

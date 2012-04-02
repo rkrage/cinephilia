@@ -13,4 +13,8 @@ module ApplicationHelper
     image_tag("logo.png", :alt => "Cinephilia", :class => "round")
   end
 
+  def authenticate
+    deny_access unless signed_in?
+  end
+
 end

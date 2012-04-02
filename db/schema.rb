@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323203747) do
+ActiveRecord::Schema.define(:version => 20120402213217) do
 
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "watch_list"
+    t.boolean  "like_list"
   end
 
   add_index "likes", ["movie_id"], :name => "index_likes_on_imdbid"
@@ -30,12 +32,22 @@ ActiveRecord::Schema.define(:version => 20120323203747) do
     t.string   "genre2"
     t.string   "rating"
     t.integer  "year"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "url"
     t.string   "poster"
     t.string   "plot"
+    t.string   "user_rating"
   end
+
+  create_table "mustsees", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "movie_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "mustsees", ["user_id", "movie_id"], :name => "index_mustsees_on_user_id_and_movie_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

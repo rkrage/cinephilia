@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :index, :destroy]
+  before_filter :authenticate, :only => [:edit, :update, :index, :destroy, :results]
   before_filter :correct_user, :only => [:edit, :update, :destroy]
   def new
     if signed_in?
@@ -9,11 +9,26 @@ class UsersController < ApplicationController
       @title = "Sign up"
     end
   end
+  
+  def results
+    @title = "Movie Results"
+    @query = params[:q]
+    @users = User.find_with_index(@query)
+    @length = @users.length - 1
+    if @length > 9
+    @length = 9
+    end
+  end
 
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @users = @user.movies.paginate(:page => params[:page], :per_page => 10, :order => 'title')
+    @likes = @user.movies.where(:likes => {:like_list => true}).order("likes.created_at DESC").limit(10)
+    @watch_list = @user.movies.where(:likes => {:watch_list => true}).order("likes.created_at DESC").limit(10)
+    
+    #topGenres1 = @user.movies.group('genre1').order('count_genre1 DESC').limit(2).count('genre1').to_a
+    #topGenres2 = @user.movies.group('genre2').order('count_genre2 DESC').limit(2).count('genre2').to_a
+    
   end
 
   def index

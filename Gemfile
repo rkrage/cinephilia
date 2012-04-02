@@ -10,6 +10,7 @@ gem 'imdb'
 gem 'will_paginate'
 gem 'hpricot'
 gem 'gravatar_image_tag'
+gem 'acts_as_indexed'
 
 
 # Gems used only for assets and not required

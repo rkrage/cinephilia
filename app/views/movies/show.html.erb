@@ -12,7 +12,9 @@ function submitform(id)
 		<p>
 			Year: <%= @movie.year%>
 			<br/>
-			Rating: <%= @movie.rating%>
+			User Rating: <%= @movie.user_rating %>/10
+			<br/>
+			MPAA Rating: <%= @movie.rating%>
 			<br/>
 			Genres: <%= @movie.genre1%>, <%= @movie.genre2%>
 			<br/>
@@ -23,8 +25,14 @@ function submitform(id)
 <%if signed_in? %>
 <form action="/movies/like" method="post" id="1" style="display:none">
 	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
+	<input type="hidden" name="watch_list" value="no">
+</form>
+<form action="/movies/like" method="post" id="2" style="display:none">
+	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
+	<input type="hidden" name="watch_list" value="yes">
 </form>
 <p align="center">
-	<input type="button" class="button" value="Like this movie!" onclick="javascript:submitform('1')">
+	<input type="button" class="button" value="Like this movie" onclick="javascript:submitform('1')"> 
+	<input type="button" class="button" value="Add to watch list" onclick="javascript:submitform('2')">
 </p>
 <%end%>

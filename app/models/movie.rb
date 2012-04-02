@@ -33,6 +33,7 @@ class Movie < ActiveRecord::Base
     rating = rating.split[1]
     end
     self.rating = rating
+    self.user_rating = movie.rating
   end
 
 end

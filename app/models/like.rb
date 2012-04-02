@@ -1,5 +1,5 @@
 class Like < ActiveRecord::Base
-  attr_accessible :movie_id
+  attr_accessible :movie_id, :watch_list, :like_list
   belongs_to :movie
   belongs_to :user
   validates :user_id, :presence => true
