@@ -5,7 +5,7 @@ function submitform(id)
 }
 </script>
 
-<h1>Results</h1>
+<h1><%= @title%></h1>
 <% if @query.empty? %>
 <p>You did not enter any text. Try again.</p>
 <% elsif @length < 0 %>
