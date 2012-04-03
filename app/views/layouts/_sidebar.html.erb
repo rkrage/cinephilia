@@ -19,16 +19,13 @@
 			<%= link_to "Profile", current_user %>
 		</li>
 		<li>
-			<a href="#">Friends</a>
+			<%= link_to "Following", following_user_path(current_user)%>
 		</li>
 		<li>
-			<a href="#">Movies</a>
+			<%= link_to "Followers", followers_user_path(current_user)%>
 		</li>
 		<li>
-			<a href="#">Reviews</a>
-		</li>
-		<li>
-			<a href="#">Suggestions</a>
+			<%= link_to "Suggestions", suggestions_user_path(current_user) %>
 		</li>
 		<li>
 			<%= link_to "Settings", edit_user_path(current_user) %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :index, :destroy, :results, :following, :followers]
-  before_filter :correct_user, :only => [:edit, :update, :destroy]
+  before_filter :authenticate, :only => [:edit, :update, :index, :destroy, :results, :following, :followers, :suggestions]
+  before_filter :correct_user, :only => [:edit, :update, :destroy, :suggestions]
   def new
     if signed_in?
       redirect_to root_path
@@ -23,9 +23,24 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(:page => params[:page])
     render 'show_follow'
   end
+  
+  def suggestions
+    @user = User.find(params[:id])
+    @title = "My Suggestions"
+    genres1 = @user.movies.select("genre1").collect {|x| x.genre1}
+    genres2 = @user.movies.select("genre2").collect {|x| x.genre2}
+    genres = genres1 + genres2
+    freq = genres.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+    genres = genres.sort_by { |v| freq[v] }.reverse.uniq
+    @first = genres.first
+    @second = genres.second
+    alreadySeen = @user.movies
+    @movies = Movie.where("((genre1 = '#{@first}' OR genre2 = '#{@first}') AND user_rating >= 6.5) OR ((genre1 = '#{@second}' OR genre2 = '#{@second}') AND user_rating >= 7)").order("user_rating DESC")    
+    @movies = @movies - alreadySeen
+  end
 
   def results
-    @title = "Movie Results"
+    @title = "User Results"
     @query = params[:q]
     @users = User.find_with_index(@query)
     @length = @users.length - 1
@@ -39,10 +54,6 @@ class UsersController < ApplicationController
     @title = @user.name
     @likes = @user.movies.where(:likes => {:like_list => true}).order("likes.created_at DESC").limit(10)
     @watch_list = @user.movies.where(:likes => {:watch_list => true}).order("likes.created_at DESC").limit(10)
-
-  #topGenres1 = @user.movies.group('genre1').order('count_genre1 DESC').limit(2).count('genre1').to_a
-  #topGenres2 = @user.movies.group('genre2').order('count_genre2 DESC').limit(2).count('genre2').to_a
-
   end
 
   def index
@@ -90,6 +101,7 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(permission_path) unless current_user?(@user)
+    
   end
 
 end
