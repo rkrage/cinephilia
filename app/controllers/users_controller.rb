@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @first = genres.first
     @second = genres.second
     alreadySeen = @user.movies
-    @movies = Movie.where("((genre1 = '#{@first}' OR genre2 = '#{@first}') AND user_rating >= 6.5) OR ((genre1 = '#{@second}' OR genre2 = '#{@second}') AND user_rating >= 7)").order("user_rating DESC")    
+    @movies = Movie.where("((genre1 = '#{@first}' OR genre2 = '#{@first}') AND user_rating >= '6.5') OR ((genre1 = '#{@second}' OR genre2 = '#{@second}') AND user_rating >= '7')").order("user_rating DESC")    
     @movies = @movies - alreadySeen
   end
 
