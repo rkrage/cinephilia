@@ -1,10 +1,16 @@
 Cinephilia::Application.routes.draw do
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   get "sessions/new"
 
   resources :users
   resources :movies
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :relationships, :only => [:create, :destroy]
 
   get "users/new"
   post "movies/like"

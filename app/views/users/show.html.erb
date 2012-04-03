@@ -1,8 +1,18 @@
+<script type="text/javascript">
+	function submitform(id) {
+		document.forms[id].submit();
+	}
+</script>
 <h1><%= @user.name %></h1>
 <table summary="Profile information">
 	<tr>
-		<td width="20%" valign="top"><img src="<%= gravatar_for @user %>"></td>
-		<td width="40%" valign="top"><strong>My Likes</strong>
+		<td width="20%" align="center"> <%= render 'follow_form' if signed_in? %> </td>
+		<td><a href="<%= following_user_path(@user) %>"> <%= @user.following.count %> following</a></td>
+		<td><a href="<%= followers_user_path(@user) %>"> <%= pluralize(@user.followers.count, "follower") %></a></td>
+	</tr>
+	<tr>
+		<td width="20%" valign="top" align="center"><img src="<%= gravatar_for @user %>"></td>
+		<td width="40%" valign="top"><strong>User's Likes</strong>
 		<br/>
 		<ol>
 			<% @likes.each do |movie| %>
@@ -11,7 +21,7 @@
 			</li>
 			<% end %>
 		</ol></td>
-		<td width="40%" valign="top"><strong>My Watch List</strong>
+		<td width="40%" valign="top"><strong>User's Watch List</strong>
 		<br/>
 		<ol>
 			<% @watch_list.each do |movie| %>

@@ -1,0 +1,17 @@
+<table summary="Information about following/followers">
+<tr>
+<td class="main">
+<h1><%= @title %></h1>
+<%= will_paginate %>
+<ol>
+	<% @users.each do |user| %>
+	<li>
+		<img src="<%= gravatar_for user %>" width="30">
+		<%= link_to user.name, user %>
+	</li>
+	<% end %>
+</ol>
+<%= will_paginate %>
+</td>
+</tr>
+</table>

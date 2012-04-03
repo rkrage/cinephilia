@@ -1,0 +1,7 @@
+<div style="display:none">
+<%= form_for current_user.relationships.
+build(:followed_id => @user.id) do |f| %>
+<%= f.hidden_field :followed_id %>
+<% end %>
+</div>
+<input type="button" class="button" value="Follow this user" onclick="javascript:submitform('2')"> 

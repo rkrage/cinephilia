@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :index, :destroy, :results]
+  before_filter :authenticate, :only => [:edit, :update, :index, :destroy, :results, :following, :followers]
   before_filter :correct_user, :only => [:edit, :update, :destroy]
   def new
     if signed_in?
@@ -9,7 +9,21 @@ class UsersController < ApplicationController
       @title = "Sign up"
     end
   end
-  
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(:page => params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(:page => params[:page])
+    render 'show_follow'
+  end
+
   def results
     @title = "Movie Results"
     @query = params[:q]
@@ -25,10 +39,10 @@ class UsersController < ApplicationController
     @title = @user.name
     @likes = @user.movies.where(:likes => {:like_list => true}).order("likes.created_at DESC").limit(10)
     @watch_list = @user.movies.where(:likes => {:watch_list => true}).order("likes.created_at DESC").limit(10)
-    
-    #topGenres1 = @user.movies.group('genre1').order('count_genre1 DESC').limit(2).count('genre1').to_a
-    #topGenres2 = @user.movies.group('genre2').order('count_genre2 DESC').limit(2).count('genre2').to_a
-    
+
+  #topGenres1 = @user.movies.group('genre1').order('count_genre1 DESC').limit(2).count('genre1').to_a
+  #topGenres2 = @user.movies.group('genre2').order('count_genre2 DESC').limit(2).count('genre2').to_a
+
   end
 
   def index
