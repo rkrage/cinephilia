@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation
 
-  acts_as_indexed :fields => [:name, :email]
+  acts_as_indexed :fields => [:name]
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   name_regex = /^[a-z0-9\-_]+$/i
