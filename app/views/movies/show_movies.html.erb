@@ -1,0 +1,16 @@
+<h1><%= @title %></h1>
+<% if @someBool %>
+&nbsp;&nbsp;  <a href="/movies_by_rating">Sort by Rating</a>
+<% else %>
+&nbsp;&nbsp;  <a href="/movies">Sort by Name</a>
+<%end%>
+<br/><br/>
+<%= will_paginate %>
+<ol>
+	<% @movies.each do |movie| %>
+	<li>
+		<a href="/movies/<%=movie.imdbid%>"><%=movie.title%></a>
+	</li>
+	<% end %>
+</ol>
+<%= will_paginate %>
