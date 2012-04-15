@@ -50,7 +50,7 @@ class UsersController < ApplicationController
        follower_movies = follower_movies + follower.movies.where("user_rating >= '5'")
     end
     follower_movies = follower_movies.uniq.sort {|a,b| b.user_rating <=> a.user_rating}
-    @movies = (@movies - alreadySeen + follower_movies).uniq.paginate(:page => params[:page], :per_page => 10)
+    @movies = (@movies + follower_movies - alreadySeen).uniq.paginate(:page => params[:page], :per_page => 10)
   end
 
   def user_suggestions
