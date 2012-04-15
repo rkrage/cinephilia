@@ -11,8 +11,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @title = "All Movies"
+    @title = "All Movies By Name"
     @movies = Movie.paginate(:page => params[:page], :per_page => 10, :order => 'title')
+    @someBool = true
+    render 'show_movies'
   end
 
   def show
@@ -21,6 +23,13 @@ class MoviesController < ApplicationController
       @movie = Movie.create(:imdbid => params[:id])
     end
     @title = @movie.title
+  end
+
+  def sort_by_rating
+    @title = "All Movies By Rating"
+    @movies = Movie.paginate(:page => params[:page], :per_page => 10, :order => 'user_rating DESC')
+    @someBool = false
+    render 'show_movies'
   end
 
   def like

@@ -25,7 +25,10 @@
 			<%= link_to "Followers", followers_user_path(current_user)%>
 		</li>
 		<li>
-			<%= link_to "Suggestions", suggestions_user_path(current_user) %>
+			<%= link_to "Movie Suggestions", movie_suggestions_user_path(current_user) %>
+		</li>
+		<li>
+			<%= link_to "User Suggestions", user_suggestions_user_path(current_user) %>
 		</li>
 		<li>
 			<%= link_to "Settings", edit_user_path(current_user) %>

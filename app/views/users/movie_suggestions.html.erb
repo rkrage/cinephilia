@@ -1,0 +1,11 @@
+<h1><%=@title%></h1>
+<p>Your top genres are <%=@first%> and <%=@second%></p>
+<%= will_paginate @movies%>
+<ol>
+	<% @movies.each do |movie| %>
+	<li>
+		<a href="/movies/<%= movie.imdbid%>"><%= movie.title%></a>
+	</li>
+	<% end %>
+</ol>
+<%= will_paginate @movies%> 

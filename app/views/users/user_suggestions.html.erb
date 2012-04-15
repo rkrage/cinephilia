@@ -1,0 +1,12 @@
+<h1>Suggested Users</h1>
+<p>Your top genres are <%=@first%> and <%=@second%></p>
+<%= will_paginate %>
+<ol>
+	<% @users.each do |user| %>
+	<li>
+		<img src="<%= gravatar_for user %>" width="30">
+		<%= link_to user.name, user %>
+	</li>
+	<% end %>
+</ol>
+<%= will_paginate %> 
