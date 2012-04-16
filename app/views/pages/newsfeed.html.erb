@@ -1,0 +1,9 @@
+<h1>News Feed</h1>
+<%= will_paginate @recentActivity%>
+	<% @recentActivity.each do |data| %>
+	<p>
+		<%=data['user']%> added <a href="/movies/<%= data['imdbid']%>"><%= data['title']%></a> to the <%=data['list']%> list. <%=data['created_at']%>
+	</p>
+	<% end %>
+</ol>
+<%= will_paginate @recentActivity%> 

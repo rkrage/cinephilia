@@ -21,6 +21,7 @@ Cinephilia::Application.routes.draw do
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/movies_by_rating', :to => 'movies#sort_by_rating'
+  match '/feed', :to => 'pages#newsfeed'
 
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'

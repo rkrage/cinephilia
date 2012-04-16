@@ -1,7 +1,9 @@
+<% if not signed_in? %>
 <h1>Welcome fellow cinephiles!</h1>
 <p>Cinephilia lets you explore your movie interests, and connect with those who have similar movie interests to you.
 </p>
-<% if not signed_in? %>
 <p><%= link_to "Sign up now!", signup_path %></p>
+<% else %>
+<%= current_user.name %>
 <% end %>
 
