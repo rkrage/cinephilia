@@ -27,13 +27,13 @@ class UsersController < ApplicationController
   def watch_list
     @user = User.find(params[:id])
     @title = @user.name + " Watch List"
-    @movies = @user.movies.where(:likes => {:watch_list => true}).paginate(:page => params[:page], :per_page => 10, :order => 'title')
+    @movies = @user.movies.where(:likes => {:watch_list => true}).paginate(:page => params[:page], :per_page => 20, :order => 'title')
   end
 
   def like_list
     @user = User.find(params[:id])
     @title = @user.name + " Like List"
-    @movies = @user.movies.where(:likes => {:like_list => true}).paginate(:page => params[:page], :per_page => 10, :order => 'title')
+    @movies = @user.movies.where(:likes => {:like_list => true}).paginate(:page => params[:page], :per_page => 20, :order => 'title')
   end
   
   def movie_suggestions
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
        follower_movies = follower_movies + follower.movies.where("user_rating >= '5'")
     end
     follower_movies = follower_movies.uniq.sort {|a,b| b.user_rating <=> a.user_rating}
-    @movies = (@movies + follower_movies - alreadySeen).uniq.paginate(:page => params[:page], :per_page => 10)
+    @movies = (@movies + follower_movies - alreadySeen).uniq.paginate(:page => params[:page], :per_page => 20)
   end
 
   def user_suggestions
