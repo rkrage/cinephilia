@@ -16,7 +16,7 @@ function submitform(id)
 		<p>
 			Year: <%if @movie.year%><%= @movie.year%><%else%>n/a<%end%>
 			<br/>
-			User Rating: <%if @movie.user_rating%><%= @movie.user_rating %>/10<%else%>n/a<%end%>
+			User Rating: <%if @movie.user_rating != "0"%><%= @movie.user_rating %>/10<%else%>n/a<%end%>
 			<br/>
 			MPAA Rating: <%if @movie.rating%><%= @movie.rating%><%else%>n/a<%end%>
 			<br/>
