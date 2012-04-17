@@ -2,7 +2,8 @@
 <%= will_paginate @recentActivity%>
 	<% @recentActivity.each do |data| %>
 	<p>
-		<%=data['user']%> added <a href="/movies/<%= data['imdbid']%>"><%= data['title']%></a> to the <%=data['list']%> list. <%=data['created_at']%>
+		<%=data['user']%> added <a href="/movies/<%= data['imdbid']%>"><%= data['title']%></a> to the <%=data['list']%> list.
+		<br/> &nbsp;-<%=data['created_at'].strftime('%m/%d/%y, %l:%M %p')%>
 	</p>
 	<% end %>
 </ol>

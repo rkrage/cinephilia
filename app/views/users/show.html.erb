@@ -4,9 +4,9 @@
 	}
 </script>
 <h1><%= @user.name %></h1>
-<table summary="Profile information">
+<table summary="Profile information" class="profile">
 	<tr>
-		<td width="20%" align="center"> <%= render 'follow_form' if signed_in? %> </td>
+		<td width="20%" align="center">&nbsp;</td>
 		<td><a href="<%= following_user_path(@user) %>"> <%= @user.following.count %> following</a></td>
 		<td><a href="<%= followers_user_path(@user) %>"> <%= pluralize(@user.followers.count, "follower") %></a></td>
 	</tr>
@@ -14,7 +14,7 @@
 		<td width="20%" valign="top" align="center"><img src="<%= gravatar_for @user %>"></td>
 		<td width="40%" valign="top"><strong>Recently Added Likes</strong>
 		<br/>
-		<ol>
+		<ol class="profile">
 			<% @likes.each do |movie| %>
 			<li>
 				<a href="/movies/<%= movie.imdbid%>"><%= movie.title%></a>
@@ -23,7 +23,7 @@
 		</ol></td>
 		<td width="40%" valign="top"><strong>Recently Added Watch List</strong>
 		<br/>
-		<ol>
+		<ol class="profile">
 			<% @watch_list.each do |movie| %>
 			<li>
 				<a href="/movies/<%= movie.imdbid%>"><%= movie.title%></a>
@@ -34,3 +34,5 @@
         <tr><td></td><td align="center"><a href="/users/<%= @user.id %>/like_list" align="center">View All</a></td>
         <td align="center"><a href="/users/<%= @user.id %>/watch_list" align="center">View All</a></td></tr>
 </table>
+<br/><br/>
+<div align="center"><%= render 'follow_form' if signed_in? %></p>

@@ -12,17 +12,14 @@ function submitform(id)
 <p>Sorry, we could not find any results for, '<%= @query%>'.</p>
 <% else %>
 <p>Showing results for, '<%= @query%>'.</p>
-<ul>
-<% (0..@length).each do |i| %>
-	<% @movie = @movies[i] %>
+<%= will_paginate %>
+<ol>
+	<% @movies.each do |movie| %>
 	<li>
-		<%= link_to @movie.title, "/movies/"+@movie.id%><!--<% if signed_in? %> - <a href="javascript:submitform('<%= i+1%>')">Like</a>
-			<form action="/movies/like" method="post" id="<%= i+1 %>" style="display:none">
-				<input type="hidden" name="id" value="<%= @movie.id %>">
-			</form>
-		<%end%>
-		-->
+		<%= link_to movie.title, "/movies/"+movie.id%>
 	</li>
-<% end %>
-</ul>
+	<% end %>
+</ol>
+<%= will_paginate %>
 <% end%>
+

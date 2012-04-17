@@ -27,14 +27,14 @@ class PagesController < ApplicationController
     following = current_user.following
     @recentActivity = []
     following.each do |user|
-      user.likes.each do |like|
+      user.likes.where("created_at >= '#{Time.now.utc.prev_month}'").each do |like|
         if like.watch_list == true and like.like_list == false
           tempMovie = Movie.find(like.movie_id)
-          @recentActivity << {'user' => user.name, 'title' => tempMovie.title, 'list' => "watch", 'created_at' => like.created_at}
+          @recentActivity << {'user' => user.name, 'title' => tempMovie.title, 'imdbid' => tempMovie.imdbid, 'list' => "watch", 'created_at' => like.created_at.in_time_zone('Central Time (US & Canada)')}
         end
         if like.watch_list == false and like.like_list == true
           tempMovie = Movie.find(like.movie_id)
-          @recentActivity << {'user' => user.name, 'title' => tempMovie.title, 'imdbid' => tempMovie.imdbid, 'list' => "like", 'created_at' => like.created_at}
+          @recentActivity << {'user' => user.name, 'title' => tempMovie.title, 'imdbid' => tempMovie.imdbid, 'list' => "like", 'created_at' => like.created_at.in_time_zone('Central Time (US & Canada)')}
         end
       end
     end

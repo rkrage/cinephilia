@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def results
     @title = "Movie Results"
     @query = params[:q]
-    @movies = Imdb::Search.new(@query).movies
+    @movies = Imdb::Search.new(@query).movies.paginate(:page => params[:page], :per_page => 20)
     @length = @movies.length - 1
     if @length > 9
     @length = 9
@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     @title = "All Movies By Name"
-    @movies = Movie.paginate(:page => params[:page], :per_page => 10, :order => 'title')
+    @movies = Movie.paginate(:page => params[:page], :per_page => 20, :order => 'title')
     @someBool = true
     render 'show_movies'
   end
