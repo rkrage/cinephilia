@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_filter :authenticate, :only => [:like]
+  before_filter :authenticate, :only => [:like, :dislike]
   def results
     @title = "Movie Results"
     @query = params[:q]

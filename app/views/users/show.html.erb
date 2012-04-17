@@ -12,7 +12,7 @@
 	</tr>
 	<tr>
 		<td width="20%" valign="top" align="center"><img src="<%= gravatar_for @user %>"></td>
-		<td width="40%" valign="top"><strong>Recently Liked Movies</strong>
+		<td width="40%" valign="top"><strong>Recent Liked Movies</strong>
 		<br/>
 		<ol class="profile">
 			<% @likes.each do |movie| %>
@@ -21,7 +21,7 @@
 			</li>
 			<% end %>
 		</ol></td>
-		<td width="40%" valign="top"><strong>Watch List - Recently Added</strong>
+		<td width="40%" valign="top"><strong>Recent Watch List</strong>
 		<br/>
 		<ol class="profile">
 			<% @watch_list.each do |movie| %>
@@ -31,8 +31,13 @@
 			<% end %>
 		</ol></td>
 	</tr>
-        <tr><td></td><td align="center"><a href="/users/<%= @user.id %>/like_list" align="center">View All</a></td>
-        <td align="center"><a href="/users/<%= @user.id %>/watch_list" align="center">View All</a></td></tr>
+	<tr>
+		<td></td><td align="center"><a href="/users/<%= @user.id %>/like_list" align="center">View All</a></td>
+		<td align="center"><a href="/users/<%= @user.id %>/watch_list" align="center">View All</a></td>
+	</tr>
 </table>
-<br/><br/>
-<div align="center"><%= render 'follow_form' if signed_in? %></p>
+<br/>
+<br/>
+<div align="center">
+	<%= render 'follow_form' if signed_in? %>
+</div>
