@@ -12,7 +12,7 @@
 	</tr>
 	<tr>
 		<td width="20%" valign="top" align="center"><img src="<%= gravatar_for @user %>"></td>
-		<td width="40%" valign="top"><strong>Recently Added Likes</strong>
+		<td width="40%" valign="top"><strong>Recently Liked Movies</strong>
 		<br/>
 		<ol class="profile">
 			<% @likes.each do |movie| %>
@@ -21,7 +21,7 @@
 			</li>
 			<% end %>
 		</ol></td>
-		<td width="40%" valign="top"><strong>Recently Added Watch List</strong>
+		<td width="40%" valign="top"><strong>Watch List - Recently Added</strong>
 		<br/>
 		<ol class="profile">
 			<% @watch_list.each do |movie| %>
