@@ -8,17 +8,21 @@ function submitform(id)
 <h1><%= @title%></h1>
 <table>
 	<tr>
-		<td><a href="<%= @movie.poster %>"><img src="<%= @movie.poster%>" width="100px"></a></td><td>
+		<td><%if @movie.poster%><a href="<%= @movie.poster %>"><img src="<%= @movie.poster%>" width="100px"></a>
+			<%else%>
+			<img src="http://lnimagecdn.fridaymoviez.com/images/common/no-image.jpg" width="100px">
+			<%end%>
+		</td><td>
 		<p>
-			Year: <%= @movie.year%>
+			Year: <%if @movie.year%><%= @movie.year%><%else%>n/a<%end%>
 			<br/>
-			User Rating: <%= @movie.user_rating %>/10
+			User Rating: <%if @movie.user_rating%><%= @movie.user_rating %>/10<%else%>n/a<%end%>
 			<br/>
-			MPAA Rating: <%= @movie.rating%>
+			MPAA Rating: <%if @movie.rating%><%= @movie.rating%><%else%>n/a<%end%>
 			<br/>
-			Genres: <%= @movie.genre1%>, <%= @movie.genre2%>
+			Genres: <%if @movie.genre1%><%= @movie.genre1%><%else%>n/a<%end%><%if @movie.genre2%>, <%= @movie.genre2%><%end%>
 			<br/>
-			Plot: <%= @movie.plot%>
+			Plot: <%if @movie.plot%><%= @movie.plot%><%else%>n/a<%end%>
 		</p></td>
 	</tr>
 </table>

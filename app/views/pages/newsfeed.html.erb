@@ -1,8 +1,11 @@
 <h1>News Feed</h1>
 <%= will_paginate @recentActivity%>
 	<% @recentActivity.each do |data| %>
-	<p>
-		<%=data['user']%> added <a href="/movies/<%= data['imdbid']%>"><%= data['title']%></a> to their <%=data['list']%> list.
+	<p><%if !data['title'].nil?%>
+		<a href="/users/<%=data['user_id']%>"><%=data['user']%></a> added <a href="/movies/<%= data['imdbid']%>"><%= data['title']%></a> to their <%=data['list']%> list.
+		<%else%>
+		<a href="/users/<%=data['user_id']%>"><%=data['user']%></a> is now following <a href="/users/<%=data['following_id']%>"><%=data['following']%></a>.
+		<%end%>
 		<br/> &nbsp;-<%=data['created_at'].strftime('%m/%d/%y, %l:%M %p')%>
 	</p>
 	<% end %>

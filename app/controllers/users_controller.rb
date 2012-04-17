@@ -88,8 +88,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @likes = @user.movies.where(:likes => {:like_list => true}).order("likes.created_at DESC").limit(10)
-    @watch_list = @user.movies.where(:likes => {:watch_list => true}).order("likes.created_at DESC").limit(10)
+    @likes = @user.movies.where(:likes => {:like_list => true}).order("likes.updated_at DESC").limit(10)
+    @watch_list = @user.movies.where(:likes => {:watch_list => true}).order("likes.updated_at DESC").limit(10)
   end
 
   def index

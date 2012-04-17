@@ -40,7 +40,7 @@ class MoviesController < ApplicationController
 
   def sort_by_rating
     @title = "All Movies By Rating"
-    @movies = Movie.paginate(:page => params[:page], :per_page => 10, :order => 'user_rating DESC')
+    @movies = Movie.paginate(:page => params[:page], :per_page => 20, :order => 'user_rating DESC')
     @someBool = false
     render 'show_movies'
   end
