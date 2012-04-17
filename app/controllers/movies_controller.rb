@@ -23,16 +23,16 @@ class MoviesController < ApplicationController
       @movie = Movie.create(:imdbid => params[:id])
     end
     @title = @movie.title
-    @watch = "Add to"
-    @like = "Like"
+    @watch = false
+    @like = false
     if signed_in?
       current_movie = current_user.likes.find_by_movie_id(@movie.id)
       if !current_movie.nil?
         if current_movie.watch_list
-          @watch = "Remove from"
+          @watch = true
         end
         if current_movie.like_list
-          @like = "Unlike"
+          @like = true
         end
       end
     end
@@ -83,12 +83,13 @@ class MoviesController < ApplicationController
         flash[:failure] = failure1
       elsif !(watch_list) and temp.like_list
         flash[:failure] = failure2
-      elsif watch_list
-        temp.watch_list = true
-        temp.save
-        flash[:success] = success1
+      elsif temp.watch_list and !(watch_list)
+        flash[:failure] = "How can you like a movie you haven't seen?"
+      elsif temp.like_list and watch_list
+        flash[:failure] = "I thought you already saw this movie..."
       else
-        temp.like_list = true
+        temp.watch_list = watch_list
+        temp.like_list = !(watch_list)
         temp.save
         flash[:success] = success2
       end

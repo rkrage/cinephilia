@@ -41,14 +41,14 @@ class PagesController < ApplicationController
       end
       user.relationships.where("created_at >= '#{Time.now.utc.prev_month}'").each do |relationship|
         tempUser = User.find(relationship.followed_id)
-        username = nil
-        if tempUser == current_user
-          username = "you"
-        else
-          username = tempUser.name
+        if tempUser != current_user
+          @recentActivity << {'user' => user.name, 'user_id' => user.id, 'following_id' => tempUser.id,'following' => tempUser.name, 'created_at' => relationship.created_at.in_time_zone('Central Time (US & Canada)')}
         end
-        @recentActivity << {'user' => user.name, 'user_id' => user.id, 'following_id' => tempUser.id,'following' => username, 'created_at' => relationship.created_at.in_time_zone('Central Time (US & Canada)')}
       end
+    end
+    Relationship.where("created_at >= '#{Time.now.utc.prev_month}' and followed_id = '#{current_user.id}'").each do |relationship|
+      tempUser = User.find(relationship.follower_id)
+      @recentActivity << {'user' => tempUser.name, 'user_id' => tempUser.id, 'following_id' => current_user.id,'following' => "you", 'created_at' => relationship.created_at.in_time_zone('Central Time (US & Canada)')}
     end
     @recentActivity = (@recentActivity.sort {|a,b| b['created_at'] <=> a['created_at']}).paginate(:page => params[:page], :per_page => 10)
   end

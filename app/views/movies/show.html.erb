@@ -27,30 +27,35 @@ function submitform(id)
 	</tr>
 </table>
 <%if signed_in? %>
-<%if @like == "Like"%>
-<form action="/movies/like" method="post" style="display:none">
-	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
-	<input type="hidden" name="watch_list" value="no">
-</form>
-<%else%>
+<%if @like%>
 <form action="/movies/dislike" method="post" style="display:none">
 	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
 	<input type="hidden" name="watch_list" value="no">
 </form>
-<%end%>
-<%if @watch == "Add to"%>
-<form action="/movies/like" method="post" style="display:none">
-	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
-	<input type="hidden" name="watch_list" value="yes">
-</form>
-<%else%>
-<form action="/movies/dislike" method="post" style="display:none">
-	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
-	<input type="hidden" name="watch_list" value="yes">
-</form>
-<%end%>
 <p align="center">
-	<input type="button" class="button" value="<%=@like%> this movie" onclick="javascript:submitform('2')"> 
-	<input type="button" class="button" value="<%=@watch%> watch list" onclick="javascript:submitform('3')">
+	<input type="button" class="button" value="Unlike this movie" onclick="javascript:submitform('2')"> 
 </p>
+<%elsif @watch%>
+<form action="/movies/dislike" method="post" style="display:none">
+	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
+	<input type="hidden" name="watch_list" value="yes">
+</form>
+<p align="center">
+	<input type="button" class="button" value="Remove from watch list" onclick="javascript:submitform('2')"> 
+</p>
+<%else%>
+<form action="/movies/like" method="post" style="display:none">
+	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
+	<input type="hidden" name="watch_list" value="no">
+</form>
+<form action="/movies/like" method="post" style="display:none">
+	<input type="hidden" name="id" value="<%= @movie.imdbid %>">
+	<input type="hidden" name="watch_list" value="yes">
+</form>
+<p align="center">
+	<input type="button" class="button" value="Like this movie" onclick="javascript:submitform('2')"> 
+	<input type="button" class="button" value="Add to watch list" onclick="javascript:submitform('3')">
+</p>
+<%end%>
+
 <%end%>
