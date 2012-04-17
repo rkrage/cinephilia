@@ -1,12 +1,28 @@
 <h1>Suggested Users</h1>
-<p>Your top genres are <%=@first%> and <%=@second%></p>
-<%= will_paginate %>
+<%if @first.nil?%>
+<p>Start liking more movies to get better suggestions.</p>
+<%elsif @first == @second%>
+<p>Your top genre is <%=@first%>.</p>
+<%= will_paginate @users2%>
 <ol>
-	<% @users.each do |user| %>
+	<% @users2.each do |user| %>
 	<li>
 		<img src="<%= gravatar_for user %>" width="30">
 		<%= link_to user.name, user %>
 	</li>
 	<% end %>
 </ol>
-<%= will_paginate %> 
+<%= will_paginate @users2%> 
+<%else%>
+<p>Your top genres are <%=@first%> and <%=@second%>.<%=@what_the_fuck%></p>
+<%= will_paginate @users2%>
+<ol>
+	<% @users2.each do |user| %>
+	<li>
+		<img src="<%= gravatar_for user %>" width="30">
+		<%= link_to user.name, user %>
+	</li>
+	<% end %>
+</ol>
+<%= will_paginate @users2%> 
+<%end%>

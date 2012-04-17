@@ -1,5 +1,8 @@
 <h1><%=@title%></h1>
-<p>Your top genres are <%=@first%> and <%=@second%></p>
+<%if @first.nil?%>
+<p>Start liking more movies to get better suggestions.</p>
+<%elsif @first == @second%>
+<p>Your top genre is <%=@first%>.</p>
 <%= will_paginate @movies%>
 <ol>
 	<% @movies.each do |movie| %>
@@ -9,3 +12,15 @@
 	<% end %>
 </ol>
 <%= will_paginate @movies%> 
+<%else%>
+<p>Your top genres are <%=@first%> and <%=@second%>.</p>
+<%= will_paginate @movies%>
+<ol>
+	<% @movies.each do |movie| %>
+	<li>
+		<a href="/movies/<%= movie.imdbid%>"><%= movie.title%></a>
+	</li>
+	<% end %>
+</ol>
+<%= will_paginate @movies%> 
+<%end%>
