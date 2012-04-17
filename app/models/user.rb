@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
   def like(movie_id)
     likes.create(:movie_id => movie_id)
   end
+  
+  def message(message_content)
+    messages.create(:content => message_content)
+  end
 
   private
 

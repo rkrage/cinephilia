@@ -14,6 +14,7 @@ Cinephilia::Application.routes.draw do
 
   get "users/new"
   post "movies/like"
+  post "movies/dislike"
 
   match '/movieresults', :to => 'movies#results'
   match '/userresults', :to => 'users#results'

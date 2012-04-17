@@ -23,6 +23,19 @@ class MoviesController < ApplicationController
       @movie = Movie.create(:imdbid => params[:id])
     end
     @title = @movie.title
+    @watch = "Add to"
+    @like = "Like"
+    if signed_in?
+      current_movie = current_user.likes.find_by_movie_id(@movie.id)
+      if !current_movie.nil?
+        if current_movie.watch_list
+          @watch = "Remove from"
+        end
+        if current_movie.like_list
+          @like = "Unlike"
+        end
+      end
+    end
   end
 
   def sort_by_rating
@@ -30,6 +43,25 @@ class MoviesController < ApplicationController
     @movies = Movie.paginate(:page => params[:page], :per_page => 10, :order => 'user_rating DESC')
     @someBool = false
     render 'show_movies'
+  end
+  
+  def dislike
+    imdbid = params[:id]
+    movie = Movie.find_by_imdbid(imdbid)
+    watch_list = params[:watch_list] == "yes"
+    current_like = current_user.likes.find_by_movie_id(movie.id)
+    if !current_like.nil?
+      if watch_list
+        current_like.watch_list = false
+        flash[:success] = "Successfully removed '" + movie.title + "' from your watch list"
+        current_like.save
+      else
+        current_like.like_list = false
+        flash[:success] = "Successfully removed '" + movie.title + "' from your like list"
+        current_like.save
+      end
+    end
+    redirect_to current_user
   end
 
   def like
@@ -72,6 +104,8 @@ class MoviesController < ApplicationController
     end
     redirect_to current_user
   end
+  
+  
   private
 
   def authenticate
